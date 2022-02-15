@@ -5,9 +5,9 @@ FROM mcr.microsoft.com/mssql/server:2019-latest
 USER root
 RUN mkdir /shared; chown mssql /shared
 RUN mkdir /var/opt/sqlserver; chown mssql /var/opt/sqlserver
-RUN mkdir /var/opt/sqlserver/data; chown mssql /var/opt/sqlserver
-RUN mkdir /var/opt/sqlserver/log; chown mssql /var/opt/sqlserver
-RUN mkdir /var/opt/sqlserver/backup; chown mssql /var/opt/sqlserver
+RUN mkdir /var/opt/sqlserver/data; chown mssql /var/opt/sqlserver/data
+RUN mkdir /var/opt/sqlserver/log; chown mssql /var/opt/sqlserver/log
+RUN mkdir /var/opt/sqlserver/backup; chown mssql /var/opt/sqlserver/backup
 
 # set the pwd and chown to the service account
 WORKDIR /tmp

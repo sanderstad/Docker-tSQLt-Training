@@ -5,13 +5,13 @@ services:
     networks:
       - localnet
     container_name: tsqlt1
-    hostname: mssql1
+    hostname: tsqlt1
     image: sanderstad/tsqlttraining
     build:
       context: .
       labels:
         org.label-schema.docker.cmd: "docker run -p 15331:1433  --volume shared:/shared:z
-          --name tsqlt1 --hostname mssql1 --network localnet -d
+          --name tsqlt1 --hostname tsqlt1 --network localnet -d
           sanderstad/tsqlttraining"
       args:
         PRIMARYSQL: "TRUE"
