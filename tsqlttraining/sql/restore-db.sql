@@ -12,6 +12,20 @@ WITH FILE = 1,
 
 GO
 
+USE [master];
+RESTORE DATABASE [Northwind-tSQLt]
+FROM DISK = N'/tmp/northwind.bak'
+WITH FILE = 1,
+     MOVE N'Northwind'
+     TO N'/var/opt/sqlserver/data/northwnd-tsqlt.mdf',
+     MOVE N'Northwind_log'
+     TO N'/var/opt/sqlserver/log/northwnd-tsqlt.ldf',
+     NOUNLOAD,
+	 REPLACE,
+     STATS = 5;
+
+GO
+
 
 USE [master];
 RESTORE DATABASE [pubs]
@@ -27,6 +41,20 @@ WITH FILE = 1,
 
 GO
 
+
+USE [master];
+RESTORE DATABASE [pubs-tSQLt]
+FROM DISK = N'/tmp/pubs.bak'
+WITH FILE = 1,
+     MOVE N'pubs'
+     TO N'/var/opt/sqlserver/data/pubs-tsqlt.mdf',
+     MOVE N'pubs_log'
+     TO N'/var/opt/sqlserver/log/pubs_log-tsqlt.ldf',
+     NOUNLOAD,
+	 REPLACE,
+     STATS = 5;
+
+GO
 
 --USE [master]
 --RESTORE DATABASE [WideWorldImporters] FROM  DISK = N'/tmp/WideWorldImporters-Full.bak' WITH  FILE = 1,  MOVE N'WWI_Primary' TO N'/var/opt/sqlserver/data/WideWorldImporters.mdf',  MOVE N'WWI_UserData' TO N'/var/opt/sqlserver/data/WideWorldImporters_UserData.ndf',  MOVE N'WWI_Log' TO N'/var/opt/sqlserver/log/WideWorldImporters.ldf',  MOVE N'WWI_InMemory_Data_1' TO N'/var/opt/sqlserver/data/WideWorldImporters_InMemory_Data_1',  NOUNLOAD,  STATS = 5
