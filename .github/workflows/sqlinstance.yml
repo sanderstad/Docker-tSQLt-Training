@@ -33,7 +33,7 @@ jobs:
       # push one image
       - name: Create and push manifest
         run: |
-          docker manifest create sanderstad/tsqlttraining:latest --amend sanderstad/tsqlttraining:latest-amd64
+          docker manifest create sanderstad/tsqlttraining:latest --amend sanderstad/tsqlttraining:latest
 
       - name: Push manifest
         run: |
