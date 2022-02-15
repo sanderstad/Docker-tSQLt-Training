@@ -30,10 +30,10 @@ jobs:
         run: |
           docker push sanderstad/tsqlttraining:latest
 
-      # push one multiarch image
-      - name: Create and push multiarch manifest
+      # push one image
+      - name: Create and push manifest
         run: |
-          docker manifest create sanderstad/tsqlttraining:latest
+          docker manifest create sanderstad/tsqlttraining:latest --amend sanderstad/tsqlttraining:latest-amd64
 
       - name: Push manifest
         run: |
