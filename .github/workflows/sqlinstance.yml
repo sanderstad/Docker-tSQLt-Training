@@ -24,16 +24,16 @@ jobs:
 
       - name: Tag images
         run: |
-          docker tag sanderstad/tsqlttraining sanderstad/tsqlttraining:latest-amd64
+          docker tag sanderstad/tsqlttraining sanderstad/tsqlttraining:latest
 
       - name: Push images
         run: |
-          docker push sanderstad/tsqlttraining:latest-amd64
+          docker push sanderstad/tsqlttraining:latest
 
       # push one multiarch image
       - name: Create and push multiarch manifest
         run: |
-          docker manifest create sanderstad/tsqlttraining:latest --amend sanderstad/tsqlttraining:latest-amd64 --amend sanderstad/tsqlttraining:latest-arm64
+          docker manifest create sanderstad/tsqlttraining:latest
 
       - name: Push manifest
         run: |
