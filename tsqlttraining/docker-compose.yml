@@ -1,0 +1,37 @@
+version: '3.7'
+services:
+  mssql1:
+    restart: on-failure
+    networks:
+      - localnet
+    container_name: tsqlt1
+    hostname: mssql1
+    image: sanderstad/tsqlttraining
+    build:
+      context: .
+      labels:
+        org.label-schema.docker.cmd: "docker run -p 15331:1433  --volume shared:/shared:z
+          --name tsqlt1 --hostname mssql1 --network localnet -d
+          sanderstad/tsqlttraining"
+      args:
+        PRIMARYSQL: "TRUE"
+    ports:
+      - "15331:1433"
+    env_file:
+      - sql/sapassword.env
+      - sql/sqlserver.env
+    volumes:
+      - shared:/shared:z
+      - tsqlt1_system:/var/opt/mssql
+      - tsqlt1_data:/var/opt/sqlserver/data
+      - tsqlt1_log:/var/opt/sqlserver/log
+      - tsqlt1_backup:/var/opt/sqlserver/backup
+
+networks:
+  localnet: null
+volumes:
+  shared: null
+  tsqlt1_data:
+  tsqlt1_log:
+  tsqlt1_system:
+  tsqlt1_backup:

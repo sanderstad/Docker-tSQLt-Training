@@ -1,0 +1,45 @@
+name: Deploy tsqlttraining:latest
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+
+jobs:
+  buildandpush:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_TOKEN }}
+
+      - name: Build docker images
+        run: |
+          cd ./tsqlttraining
+          docker compose up -d
+
+      - name: Tag images
+        run: |
+          docker tag sanderstad/tsqlttraining sanderstad/tsqlttraining:latest-amd64
+
+      - name: Push images
+        run: |
+          docker push sanderstad/tsqlttraining:latest-amd64
+          docker push sanderstad/tsqlttraining2:latest-amd64
+
+      # push one multiarch image
+      - name: Create and push multiarch manifest
+        run: |
+          docker manifest create sanderstad/tsqlttraining:latest --amend sanderstad/tsqlttraining:latest-amd64 --amend sanderstad/tsqlttraining:latest-arm64
+
+      - name: Push manifest
+        run: |
+          docker manifest push docker.io/sanderstad/tsqlttraining:latest --purge
+
+      - name: View manifest
+        run: |
+          docker manifest inspect docker.io/sanderstad/tsqlttraining:latest
