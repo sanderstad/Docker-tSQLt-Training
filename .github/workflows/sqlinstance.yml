@@ -29,7 +29,6 @@ jobs:
       - name: Push images
         run: |
           docker push sanderstad/tsqlttraining:latest-amd64
-          docker push sanderstad/tsqlttraining2:latest-amd64
 
       # push one multiarch image
       - name: Create and push multiarch manifest
