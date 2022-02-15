@@ -26,7 +26,12 @@ services:
       - tsqlt1_data:/var/opt/sqlserver/data
       - tsqlt1_log:/var/opt/sqlserver/log
       - tsqlt1_backup:/var/opt/sqlserver/backup
-
+    deploy:
+      resources:
+        limits:
+          memory: 3072M
+        reservations:
+          memory: 1024M
 networks:
   localnet: null
 volumes:
