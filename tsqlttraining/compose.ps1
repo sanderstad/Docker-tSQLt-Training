@@ -13,19 +13,19 @@ docker builder prune -a -f
 docker compose up --force-recreate --build --remove-orphans -d
 
 # push out to docker hub
-docker push sanderstad/tsqlttraining:latest
+#docker push sanderstad/tsqlttraining:latest
 
 # Remove manifest cache
-Remove-Item $HOME/.docker/manifests -Recurse -Force
+#Remove-Item $HOME/.docker/manifests -Recurse -Force
 
 # Create manifests that support  multiple architectures
-docker manifest create sanderstad/tsqlttraining:latest
+#docker manifest create sanderstad/tsqlttraining:latest
 
 # view it if you want
-docker manifest inspect docker.io/sanderstad/tsqlttraining:latest
+#docker manifest inspect docker.io/sanderstad/tsqlttraining:latest
 
 # push out to docker
-docker manifest push docker.io/sanderstad/tsqlttraining:latest --purge
+#docker manifest push docker.io/sanderstad/tsqlttraining:latest --purge
 
 <#
 # Clean up!
