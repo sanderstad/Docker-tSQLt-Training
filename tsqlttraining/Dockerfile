@@ -33,5 +33,5 @@ ENTRYPOINT /opt/mssql/bin/sqlservr
 LABEL org.opencontainers.image.vendor="sanderstad"
 LABEL org.opencontainers.image.title="tsqlttraining"
 LABEL org.opencontainers.image.version=1.0
-LABEL org.label-schema.description="SQL Server image to help with trainign in tSQLt"
+LABEL org.label-schema.description="SQL Server image to help with training in tSQLt"
 LABEL org.opencontainers.image.authors="Sander Stad <sander@sqlstad.nl>"
